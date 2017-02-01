@@ -14,90 +14,118 @@ Please, Would love to hear your feedback.
 - [Material-UI](http://www.material-ui.com)
 
 ## Installation
-Make sure oyu clone this repo, navigate to the folder and run the following.
+After cloning this repo into your local machine, run the following command
 
 ```shell
 [sudo] npm i
 ```
 > i: install
 
+This command will install all the dependencies this project needs.
+
 
 ## Material UI.
 ### How to inject it with your React Application.
 
-Well, Material-UI require you to install ```react-tap-event-plugin```, and this is to listen for touch/tap/ and click events.
-However, please note that this dependency is **temporary** . For more information on this, please [click here](http://www.material-ui.com/#/get-started/installation)
+Material-UI require you to install ```react-tap-event-plugin``` TO listen for touch/tap/ and click events.
+However, please note that this dependency is **temporary** . For more information about this, please [read here](http://www.material-ui.com/#/get-started/installation)
 
 Also, by defauly, Material-UI using Roboto Font from Google, but in this tutorial I will show you how to change this as well.
 
-#### Installing the ```react-tap-event-plugin```
+#### 1. Installing the ```react-tap-event-plugin```
 
 ```shell
 [sudo] npm i -D react-tap-event-plugin
 ```
+> -D (--save-dev)
 
-### How to inject it?
+#### 2. Where to inject it?
 
-Copy and paste the following ar the starter *entry* file of your application.
+Copy and paste the following code into your starter *entry* file. (**index.js)**
 
 ```js
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 ```
 
-## How to use Material-UI
+## Installing Material UI
 
+### 1. Installation
 
+All pakcages are already installed, but here are what you have to install.
+```shell
+[sudo] npm i -D material-ui
+ ```
 
+## Usage
 
-> ./js/components/App.js
+Lets consider the following files structure.
+```
+src/
+    components/
+      home/
+        HomePageComponent.js
+      App.js
+  index.js
+```
+
+> **```index.js```**
 
 ```js
-import React from 'react';
-// Material UI theme.
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// Components
-import HomePage from './components/home/HomePageComponent'
+import React from 'react'
+import {render} from 'react-dom'
 
-const App = () => (
-  <MuiThemeProvider>
-    <MyAwesomeReactComponent />
-  </MuiThemeProvider>
-)
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
 
+import App from './js/components/App'
+
+render(<App />, document.getElementById('root'))
+```
+
+
+> **```App.js```**
+
+```js
+import React, {Component} from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import HomePage from './home/HomePageComponent'
+
+class App extends Component {
+  render () {
+    return (
+      <MuiThemeProvider>
+        <div>
+          <HomePage />
+        </div>
+      </MuiThemeProvider>
+    )
+  }
+}
 export default App
 ```
 
-> ./js/components/home/HomePageComponent
+> **```HomePageComponent.js```**
 
 ```js
-import React from 'react';
-// Material UI Components
-import RaisedButton from 'material-ui/RaisedButton'
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton' //One of the Material UI Component
 
-
-const HomePageComponent = () => (
-  <div className='container'>
-    <RaisedButton />
-  </div>
-)
+const HomePageComponent = () => {
+  return (
+    <div>
+      <RaisedButton label='Default' />
+      <RaisedButton primary='true' label='Primary' />
+      <RaisedButton secondary='true' label='Secondary' />
+    </div>
+  )
+}
 
 export default HomePageComponent
 ```
 
-> ./index.js
+Cool, Lets 💃, we have React and Material UI working together now. We have the 3 different Raised Button styles with their default colors and styles.
 
-```js
-import React from 'react';
-import {render} from 'react-dom';
-// Components
-import App from './js/components/home/HomePageComponent'
+## What is next?
 
-const App = () => (
-  <MuiThemeProvider>
-    <MyAwesomeReactComponent />
-  </MuiThemeProvider>
-)
-```
-
-# Customisation
+Next, we will add some customisation to our project.
