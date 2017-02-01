@@ -1,0 +1,4 @@
+{
+  "presets": [["es2015", {"modules": false}], "react"]
+}
+// module:false https://webpack.js.org/guides/hmr-react/#project-config
