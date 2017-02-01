@@ -129,3 +129,84 @@ Cool, Lets 💃, we have React and Material UI working together now. We have the
 ## What is next?
 
 Next, we will add some customisation to our project.
+
+## Using custom colors.
+Lets suppose we want to change the primary color of the RaisedButton. I will show you two different appraches, one direct to the component, and one to be general.
+
+1- Change the primary background color direct for the component.
+
+> **```HomePageComponent.js```**
+
+```js
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton' //One of the Material UI Component
+
+const customBtnStyle = {
+  backgroundColor: 'orangered'
+}
+
+const HomePageComponent = () => {
+  return (
+    <div>
+      <RaisedButton label='Default' />
+      <RaisedButton primary='true' label='Primary' buttonStyle={customBtnStyle} />
+      <RaisedButton secondary='true' label='Secondary' />
+    </div>
+  )
+}
+
+export default HomePageComponent
+```
+Notice we have changed the background color of the RaisedButton primary directly by injecting the new styles via "buttonStyle".
+This works if you want to change it only for this particular Button, but this doesn't mean that you have your own new primaryColor for the button.
+
+So, to be able to change the background color for all primary buttons, we have to do the following.
+
+2- Changing the primary background color by changing the theme itself.
+
+  Its a bit of advnace topic, so lets take our time explaining it.
+
+First: You can always return to the official documentation [here](http://www.material-ui.com/#/customization/themes).
+Second: Currently, you can switch between the two themes, light (default) and dark.
+
+Switching to the dark theme is quite simple:
+
+
+> **```App.js```**
+
+```js
+import React, {Component} from 'react'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme' // NEW: import the dark theme.
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import HomePage from './home/HomePageComponent'
+
+class App extends Component {
+  render () {
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <div>
+          <HomePage />
+        </div>
+      </MuiThemeProvider>
+    )
+  }
+}
+export default App
+```
+
+Notice the ```muiTheme``` object in ```<MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>```
+This is a JS object based on the ```lighBaseTheme```. Using this object and its keys you can be able to customise your theme.
+
+It has the following keys:
+
+- ```spacing```.
+- ``` fontFamily```.
+- ```paletter```.
+- ```zIndex```.
+- ```isRtl```.
+And each component has its own keys to customise them individually.
+- ```appBar```
+- ```avatar```
+- ...etc
+For more details please follow this link [Themes.](http://www.material-ui.com/#/customization/themes).
