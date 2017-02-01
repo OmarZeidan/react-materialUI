@@ -9,6 +9,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import HomePage from './home/HomePageComponent'
 
+/* Style
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+require('../../styles/app.scss')
+
 class App extends Component {
   render () {
     return (
